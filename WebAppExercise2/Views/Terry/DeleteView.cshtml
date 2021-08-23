@@ -1,0 +1,140 @@
+﻿@model WebApplication1.Models.CustomerInfoModel2
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteView</title>
+    <link type="text/css" href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <style>
+        dt {
+            font-weight: bold;
+            padding-top: 10px;
+        }
+
+        dd {
+            font-weight: normal;
+            color: blue;
+            padding-top: 10px;
+        }
+    </style>
+
+
+    <div style="padding: 10px;">
+        <h4>Delete/Tempory Delete Patient</h4>
+        <div>
+            <h5>Are you sure you want to delete/temporary delete this patient?</h5>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PostalCode)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PostalCode)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Phone)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Province)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Province)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Country)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Country)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Medication)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Medication)
+                </dd>
+
+
+                <dt>
+                    <label>Tempory Delete</label>
+                </dt>
+
+                <dd>
+                    @if (Model.DeleteFlag == false)
+                    {
+                        @Html.Raw("<span style='color: darkgreen !important;'>Active</span>");
+
+                    }
+                    else
+                    {
+                        @Html.Raw("<span style='color: darkred !important;'>Removed</span>");
+                    }
+                    @*@Html.DisplayFor(model => model.DeleteFlag)*@
+                </dd>
+            </dl>
+
+            @using (Html.BeginForm("DeleteItem", "Terry", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    @Html.HiddenFor(model => model.Id)
+                    <input type="submit" value="Permanent Delete" class="btn btn-default" style=" width: 150px;" />
+                    @Html.ActionLink("Temporary Delete", "RemoveItem", new { id = Model.Id }, new { @class = "btn btn-default", style = "width: 150px;" })
+                    @Html.ActionLink("Back to List", "ListView", null, new { @class = "btn btn-default", style = "width: 150px;" })
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

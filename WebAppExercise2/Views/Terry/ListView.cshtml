@@ -1,0 +1,143 @@
+﻿@model IEnumerable<WebApplication1.Models.CustomerInfoModel2>
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListView</title>
+    <link type="text/css" href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div style="padding: 20px;">
+        <h4> @ViewBag.Description</h4>
+        <p>
+            @Html.ActionLink("Create New", "CreateView", null, new { @class = "btn btn-default" })
+        </p>
+        <table class="table" style="white-space: nowrap; width: 100%;">
+            <tr>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>*@
+                <th>
+                    First Name
+                    @*@Html.DisplayNameFor(model => model.FirstName)*@
+                </th>
+                <th>
+                    Last Name
+                    @*@Html.DisplayNameFor(model => model.LastName)*@
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    Postal Code
+                    @*@Html.DisplayNameFor(model => model.PostalCode)*@
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Province)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Medication)
+                </th>
+                <th>
+                    <!-- Filler for Controls -->
+                </th>
+                <th style="text-align: center;">
+                    Temporary Delete
+                    @* @Html.DisplayNameFor(model => model.DeleteFlag)*@
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostalCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Province)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Medication)
+                    </td>
+                    <td style="text-align: center;">
+                        @* <!-- Method #1 -->
+                            <button class="btn btn-default" style="width: 80px;" onclick="location.href='@Url.Action("EditView", "Terry", new { id = item.Id })'">Edit</button>
+                            <button class="btn btn-default" style="width: 80px;" onclick="location.href='@Url.Action("DetailView", "Terry", new { id = item.Id })'">Details</button>
+                            <button class="btn btn-default" style="width: 80px;" onclick="location.href='@Url.Action("DeleteView", "Terry", new { id = item.Id })'">Delete</button>*@
+
+                        @* <!-- Method #2 -->
+                            <button class="btn btn-default" style="width: 80px;">@Html.ActionLink("Edit", "EditView", new { id = item.Id }, new { @class = "btn btn-default" })</button>
+                            <button class="btn btn-default" style="width: 80px;">@Html.ActionLink("Details", "DetailView", new { id = item.Id }, new { @class = "btn btn-default" })</button>
+                            <button class="btn btn-default" style="width: 80px;">@Html.ActionLink("Delete", "DeleteView", new { id = item.Id }, new { @class = "btn btn-default" })</button>*@
+
+                        @* <!-- Method #3 --> *@
+                        @Html.ActionLink("Edit", "EditView", new { id = item.Id }, new { @class = "btn btn-default", style = "width: 80px" })
+                        @Html.ActionLink("Details", "DetailView", new { id = item.Id }, new { @class = "btn btn-default", style = "width: 80px" })
+                        @Html.ActionLink("Delete", "DeleteView", new { id = item.Id }, new { @class = "btn btn-default", style = "width: 80px" })
+                    </td>
+
+                    <td style="text-align: center;" readonly>
+                        @if (item.DeleteFlag == false)
+                        {
+                            @Html.Raw("<span style='color: darkgreen;'>Active</span>");
+
+                        }
+                        else
+                        {
+                            @Html.Raw("<span style='color: darkred;'>Removed</span>");
+                        }
+
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>
