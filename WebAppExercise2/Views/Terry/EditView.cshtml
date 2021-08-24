@@ -14,6 +14,11 @@
     <link type="text/css" href="~/Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <div style="padding: 10px;">
         @using (Html.BeginForm("EditUpdate", "Terry", FormMethod.Post, Model))
         {
@@ -103,7 +108,8 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Medication</label>
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.CustomerInfoModel.MedicationId, new SelectList(Model.MedicationsModels, "Id", "Medication"), new { @class = "form-control dropdown", style = "width: 25%;" })
+                        @Html.DropDownListFor(model => model.CustomerInfoModel.MedicationId, new SelectList(Model.MedicationsModels, "Id", "Medication"), 
+                            new { @class = "form-control dropdown", style = "width: 25%;", id = "TagDropDownList" })
                         @Html.ValidationMessageFor(model => model.MedicationsModels, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -131,4 +137,21 @@
 
     </div>
 </body>
+
+<script>
+    
+    var optionTags = $('#TagDropDownList');
+    var optionList = optionTags.children();
+
+    var options = optionList.sort(function (a, b) {
+        if (a.text > b.text) return 1;
+        if (a.text < b.text) return -1
+        return 0;
+    });
+
+    optionTags.html(options);
+
+
+</script>
+
 </html>

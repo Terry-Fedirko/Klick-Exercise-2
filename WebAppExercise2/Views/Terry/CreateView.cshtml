@@ -100,7 +100,9 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Medication</label>
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.CustomerInfoModel.MedicationId, new SelectList(Model.MedicationsModels, "Id", "Medication"), "Select Medication Type" , new { @class = "form-control dropdown", style = "width: 25%;" })
+                        @Html.DropDownListFor(model => model.CustomerInfoModel.MedicationId, 
+                            new SelectList(Model.MedicationsModels, "Id", "Medication"), 
+                            "Select Medication Type", new { @class = "form-control dropdown", style = "width: 25%;", id = "TagDropDownList" })
                         @Html.ValidationMessageFor(model => model.MedicationsModels, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -117,6 +119,22 @@
         }
 
     </div>
+
+    <script>
+
+    var optionTags = $('#TagDropDownList');
+    var optionList = optionTags.children();
+
+    var options = optionList.sort(function (a, b) {
+        if (a.text > b.text) return 1;
+        if (a.text < b.text) return -1
+        return 0;
+    });
+
+    optionTags.html(options);
+
+
+    </script>
 
 
 </body>

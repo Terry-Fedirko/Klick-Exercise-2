@@ -14,12 +14,16 @@
     <link type="text/css" href="~/Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <div style="padding: 20px;">
+    <div style="padding: 20px; display: flex; flex-direction: column;">
         <h4> @ViewBag.Description</h4>
         <p>
             @Html.ActionLink("Create New", "CreateView", null, new { @class = "btn btn-default" })
         </p>
-        <table class="table" style="white-space: nowrap; width: 100%;">
+
+ 
+
+        </style>
+        <table class="table" style="white-space: nowrap; width: 100%; ">
             <tr>
                 @*<th>
                         @Html.DisplayNameFor(model => model.Id)
