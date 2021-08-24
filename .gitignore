@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/DatabaseExercise2/DatabaseExercise2.sqlproj
+/WinExercise2
